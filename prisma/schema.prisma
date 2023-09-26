@@ -1,0 +1,31 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model stations {
+  id   String @id @default(cuid())
+  name String @unique
+  uuid String @unique
+
+  lastContactedAt DateTime
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  readings readings[]
+}
+
+model readings {
+  time      DateTime
+  value     Float
+  unit      String
+  type      String
+  station   stations @relation(fields: [stationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  stationId String
+
+  @@unique(time)
+}
