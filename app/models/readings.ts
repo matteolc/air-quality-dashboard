@@ -130,3 +130,19 @@ export async function createReading({
     },
   });
 }
+
+export async function truncateReadings({
+  stationId,
+  type,
+}: {
+  stationId: Station["uuid"];
+  type: Reading["type"];
+}) {
+  return await prisma.$queryRawUnsafe(
+    `
+DELETE FROM readings
+WHERE "stationId" = '${stationId}'
+AND type = '${type}'
+AND DATE(time) BETWEEN NOW() - INTERVAL '1 month' AND NOW()`,
+  );
+}

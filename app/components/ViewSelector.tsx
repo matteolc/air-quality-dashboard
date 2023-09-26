@@ -8,7 +8,7 @@ export const ViewSelector = ({
   loading,
 }: {
   station: string;
-  pathname: string;
+  pathname?: string;
   loading: boolean;
 }) => {
   const Button = ({ name, to }: { name: string; to: string }) => {
@@ -21,8 +21,8 @@ export const ViewSelector = ({
             isActive
               ? "bg-cyan-950 text-cornflower-200  hover:bg-cyan-900"
               : "bg-cornflower-300 text-cyan-950 hover:bg-cornflower-600 hover:text-cornflower-200",
-            "px-3 py-2 rounded-full cursor-pointer transition-colors duration-500 font-bold",
-            loading && decodeURIComponent(pathname) === to
+            "px-3 py-2 rounded-full cursor-pointer transition-colors duration-500 font-bold w-auto h-10",
+            loading && pathname && decodeURIComponent(pathname) === to
               ? "animate-pulse"
               : "",
           )

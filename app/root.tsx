@@ -46,7 +46,7 @@ export default function App() {
       </head>
       <body className="overflow-hidden h-full">
         <SocketProvider socket={socket}>
-          <div className="fixed -z-10 w-[1900px] h-[1800px] rotate-90">
+          <div className="fixed -z-10 w-[1900px] h-[1800px] rotate-90 2xl:left-80">
             <Background />
           </div>
           <main className="fixed py-8 px-12 min-w-full">

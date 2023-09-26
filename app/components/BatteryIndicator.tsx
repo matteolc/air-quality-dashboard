@@ -2,7 +2,7 @@ import { classNames, isDefined } from "~/utils";
 
 export const BatteryIndicator = ({
   value,
-  max = 3.8,
+  max = 4.1,
   min = 3.0,
 }: {
   value?: number;
@@ -10,7 +10,7 @@ export const BatteryIndicator = ({
   min?: number;
 }) => {
   const percentage =
-    value === undefined ? 0 : Math.round(((value - min) / max) * 100);
+    value === undefined ? 0 : Math.round(((value - min) / (max - min)) * 100);
 
   const colorForPercentage = (percentage: number) => {
     if (percentage === 0) return "bg-cornflower-200";
@@ -41,15 +41,7 @@ export const BatteryIndicator = ({
             )}
             style={{ width: `${percentage}%` }}
           >
-            <div
-              className={classNames(
-                almostFull ? "text-cyan-950" : "text-cornflower-200",
-                "absolute left-0 mx-8 ",
-              )}
-            >
-              {`${percentage}%`}
-            </div>
-            {charging && (
+            {charging ? (
               <div
                 className={classNames(
                   almostEmpty ? "text-red-600" : "text-cornflower-200",
@@ -57,6 +49,15 @@ export const BatteryIndicator = ({
                 )}
               >
                 <span className="-ml-1">USB</span>
+              </div>
+            ) : (
+              <div
+                className={classNames(
+                  almostFull ? "text-cyan-950" : "text-cornflower-200",
+                  "absolute left-0 mx-8 ",
+                )}
+              >
+                {`${percentage}%`}
               </div>
             )}
           </div>

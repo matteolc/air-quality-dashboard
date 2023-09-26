@@ -4,7 +4,7 @@ import { getStationByUUID } from "~/models";
 import { useRevalidateOnFocus } from "~/utils";
 
 // redirect to onboarding if there are no stations
-export const loader: LoaderFunction = async ({ request, params }) => {
+export const loader: LoaderFunction = async ({ params }) => {
   const station = await getStationByUUID(params.station!);
   if (!station) throw redirect("/");
   return { station };

@@ -51,18 +51,7 @@ export default function Index() {
             </dl>
           </div>
         </div>
-        <Form
-          action="destroy"
-          method="post"
-          onSubmit={(event) => {
-            const response = confirm(
-              "Please confirm you want to delete this record.",
-            );
-            if (!response) {
-              event.preventDefault();
-            }
-          }}
-        >
+        <Form action="destroy" method="post">
           <button
             type="submit"
             className="my-4 uppercase rounded-full bg-red-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
@@ -124,24 +113,22 @@ export default function Index() {
                         }
                       </td>
                       <td className="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <Form
-                          action="destroy"
-                          method="post"
-                          onSubmit={(event) => {
-                            const response = confirm(
-                              "Please confirm you want to delete this record.",
-                            );
-                            if (!response) {
-                              event.preventDefault();
-                            }
-                          }}
-                        >
-                          <input type="hidden" value={count.type}></input>
+                        <Form action="destroy" method="post">
+                          <input
+                            type="hidden"
+                            value={count.type}
+                            name="type"
+                          ></input>
+                          <input
+                            type="hidden"
+                            value={station.id}
+                            name="stationId"
+                          ></input>
                           <button
-                            type="button"
-                            className="uppercase rounded-full bg-red-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+                            type="submit"
+                            className="uppercase rounded-full bg-orange-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
                           >
-                            Delete
+                            Truncate
                           </button>
                         </Form>
                       </td>
