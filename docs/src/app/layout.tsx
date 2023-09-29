@@ -1,19 +1,21 @@
 import { type Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 import clsx from 'clsx'
 
 import '@/styles/tailwind.css'
+import { Background } from '@/components/Background'
 
-const inter = Inter({
+const inter = Poppins({
+  weight: ['300', '400', '500', '700', '900'],
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
 })
 
 export const metadata: Metadata = {
-  title: 'Everything Starts as a Square - Get lost in the world of icon design',
+  title: 'Air Quality Dashboard',
   description:
-    'A book and video course that teaches you how to design your own icons from scratch.',
+    'A real-time and historycal dashboard for Air Quality monitoring',
 }
 
 export default function RootLayout({
@@ -25,22 +27,22 @@ export default function RootLayout({
     <html
       lang="en"
       className={clsx(
-        'h-full scroll-smooth bg-white antialiased',
+        'bg-cornflower-400 h-full scroll-smooth antialiased',
         inter.variable,
       )}
     >
       <head>
         <link
-          rel="preconnect"
-          href="https://cdn.fontshare.com"
-          crossOrigin="anonymous"
-        />
-        <link
           rel="stylesheet"
-          href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,500,700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap"
         />
       </head>
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <div className="fixed -z-10 h-[1800px] w-[1900px] rotate-90 2xl:left-80">
+          <Background />
+        </div>
+        {children}
+      </body>
     </html>
   )
 }

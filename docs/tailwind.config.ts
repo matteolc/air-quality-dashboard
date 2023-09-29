@@ -33,7 +33,22 @@ export default {
       },
       fontFamily: {
         sans: 'var(--font-inter)',
-        display: ['Cabinet Grotesk', ...defaultTheme.fontFamily.sans],
+        display: ['Orbitron', ...defaultTheme.fontFamily.sans],
+      },
+      colors: {
+        cornflower: {
+          '50': '#f2fafd',
+          '100': '#e4f3fa',
+          '200': '#c3e7f4',
+          '300': '#92d7ec',
+          '400': '#51c0df',
+          '500': '#2ba8cc',
+          '600': '#1c89ad',
+          '700': '#186d8c',
+          '800': '#185c74',
+          '900': '#194d61',
+          '950': '#113140',
+        },
       },
     },
   },

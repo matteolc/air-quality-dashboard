@@ -1,61 +1,92 @@
-import Link from 'next/link'
-
 import { CheckIcon } from '@/components/CheckIcon'
 import { Container } from '@/components/Container'
+import { ExternalLink } from './ExternalLink'
 
 export function Introduction() {
   return (
     <section
       id="introduction"
       aria-label="Introduction"
-      className="pb-16 pt-20 sm:pb-20 md:pt-36 lg:py-32"
+      className="pb-8 pt-16 sm:pb-6 md:pt-24"
     >
-      <Container className="text-lg tracking-tight text-slate-700">
-        <p className="font-display text-4xl font-bold tracking-tight text-slate-900">
-          “Everything Starts as a Square” is a book and video course that
-          teaches you a simple method to designing icons that anyone can learn.
+      <Container className="text-xl tracking-normal text-slate-700">
+        <p className="font-display text-5xl font-bold tracking-tight text-slate-900">
+          Air Quality Dashboard
         </p>
-        <p className="mt-4">
-          Before I learned how to design icons myself, I always imagined that
-          they were drawn by hand using the pen tool, some sort of fancy
-          graphics tablet, and hours and hours spent manually fine-tuning bezier
-          curves.
+        <p className="mt-8 text-2xl font-medium tracking-wide">
+          An Air Quality real-time and historical dashboard built with{' '}
+          <ExternalLink href="https://remix.run" name="Remix"></ExternalLink> on
+          top of the{' '}
+          <ExternalLink
+            href="https://github.com/remix-run/blues-stack"
+            name="Remix Blues Stack"
+          />
         </p>
-        <p className="mt-4">
-          But it turns out this isn’t how great icon designers work at all.
-        </p>
-        <p className="mt-4">
-          In “Everything Starts as a Square”, you’ll learn the systems experts
-          use to create pixel perfect icons, without relying on a steady hand.
-        </p>
-        <ul role="list" className="mt-8 space-y-3">
-          {[
-            'Using boolean operations to combine basic shapes into complex icons',
-            'How to adapt icons to different sizes',
-            'Translating icons from an outline style to a solid style',
-            'Identifying the characteristics that make an icon set cohesive',
-            'Figma features and keyboard shortcuts to speed up your workflow',
-          ].map((feature) => (
-            <li key={feature} className="flex">
-              <CheckIcon className="h-8 w-8 flex-none fill-blue-500" />
-              <span className="ml-4">{feature}</span>
-            </li>
-          ))}
+        <ul className="mt-12 space-y-6 text-lg">
+          <li className="flex">
+            <CheckIcon className="h-8 w-8 flex-none fill-cyan-950" />
+            <span className="ml-4">
+              <ExternalLink
+                href="https://www.timescale.com/"
+                name="TimescaleDB"
+              />{' '}
+              a PostgreSQL based database with advanced support for timeseries
+              data. Used to store sensor data in a hypertable and query data
+              efficiently in time buckets to extract basic statistics
+            </span>
+          </li>
+          <li className="flex">
+            <CheckIcon className="h-8 w-8 flex-none fill-cyan-950" />
+            <span className="ml-4">
+              <ExternalLink href="https://socket.io" name="SocketIO" /> a
+              websocket client and server implementation which provides
+              bidirectional and low-latency communication for every platform.
+              Used to control communication between the dashboard and the
+              environmental stations and for real-time updates of the dashboard
+            </span>
+          </li>
+          <li className="flex">
+            <CheckIcon className="h-8 w-8 flex-none fill-cyan-950" />
+            <span className="ml-4">
+              <ExternalLink
+                href="https://www.bosch-sensortec.com/products/environmental-sensors/gas-sensors/bme688/"
+                name="BME688"
+              ></ExternalLink>{' '}
+              a{' '}
+              <ExternalLink
+                href="https://www.bosch-sensortec.com/"
+                name="Bosch"
+              />{' '}
+              4-in-1 Gas Sensor aimed at Air quality and specific gas sensing.
+              The BME688 features Artificial Intelligence (AI) and integrated
+              high-linearity and high-accuracy pressure, humidity and
+              temperature sensors
+            </span>
+          </li>
+          <li className="flex">
+            <CheckIcon className="h-8 w-8 flex-none fill-cyan-950" />
+            <span className="ml-4">
+              <ExternalLink
+                href="https://www.bosch-sensortec.com/software-tools/software/bsec/"
+                name="BSEC"
+              ></ExternalLink>{' '}
+              a{' '}
+              <ExternalLink
+                href="https://www.bosch-sensortec.com/"
+                name="Bosch"
+              />{' '}
+              library which provides higher-level signal processing and fusion
+              for the BME680 (
+              <ExternalLink
+                href="https://github.com/BoschSensortec/BME68x-Sensor-API"
+                name="BME68x-Sensor-API"
+              ></ExternalLink>{' '}
+              on Github). BSEC precisely performs several calculations outside
+              the device such as ambient air temperature, ambient relative
+              humidity, pressure and air quality (IAQ) level.
+            </span>
+          </li>
         </ul>
-        <p className="mt-8">
-          By the end of the book, you’ll have all the confidence you need to dig
-          in and start creating beautiful icons that can hold their own against
-          any of the sets you can find online.
-        </p>
-        <p className="mt-10">
-          <Link
-            href="#free-chapters"
-            className="text-base font-medium text-blue-600 hover:text-blue-800"
-          >
-            Get two free chapters straight to your inbox{' '}
-            <span aria-hidden="true">&rarr;</span>
-          </Link>
-        </p>
       </Container>
     </section>
   )

@@ -24,8 +24,8 @@ export function Author() {
         <GridPattern x="50%" y="100%" />
       </div>
       <div className="relative mx-auto max-w-5xl pt-16 sm:px-6">
-        <div className="bg-slate-50 pt-px sm:rounded-6xl">
-          <div className="relative mx-auto -mt-16 h-44 w-44 overflow-hidden rounded-full bg-slate-200 md:float-right md:h-64 md:w-64 md:[shape-outside:circle(40%)] lg:mr-20 lg:h-72 lg:w-72">
+        <div className="bg-cornflower-50 pt-px sm:rounded-6xl">
+          <div className="bg-cornflower-200 relative mx-auto -mt-16 h-44 w-44 overflow-hidden rounded-full md:float-right md:h-64 md:w-64 md:[shape-outside:circle(40%)] lg:mr-20 lg:h-72 lg:w-72">
             <Image
               className="absolute inset-0 h-full w-full object-cover"
               src={authorImage}
@@ -38,8 +38,8 @@ export function Author() {
               Author
             </SectionHeading>
             <p className="mt-8 font-display text-5xl font-extrabold tracking-tight text-slate-900 sm:text-6xl">
-              <span className="block text-blue-600">Mira Lindehoff –</span> Hey
-              there, I’m the author behind ‘Everything Starts as a Square’.
+              <span className="block text-cyan-600">Matteo La Cognata –</span>{' '}
+              Hey there, I’m the dude who did this.
             </p>
             <p className="mt-4 text-lg tracking-tight text-slate-700">
               I’ve been designing icons professionally for over a decade and
@@ -53,7 +53,7 @@ export function Author() {
             <p className="mt-8">
               <Link
                 href="#"
-                className="inline-flex items-center text-base font-medium tracking-tight text-blue-600"
+                className="inline-flex items-center text-base font-medium tracking-tight text-cyan-600"
               >
                 <TwitterIcon className="h-10 w-10 fill-current" />
                 <span className="ml-4">Follow on Twitter</span>
