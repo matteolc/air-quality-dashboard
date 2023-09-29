@@ -10,7 +10,7 @@ export const Percentile = ({
   value?: number;
   variation?: MeterVariation;
 }) => (
-  <div className={classNames("flex")}>
+  <div className="flex">
     <div
       className={classNames(
         variation === MeterVariation.LIGHT ? "bg-cyan-900" : "bg-cyan-500",

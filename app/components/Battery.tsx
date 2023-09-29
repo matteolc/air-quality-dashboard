@@ -1,4 +1,4 @@
-import { classNames, isDefined } from "~/utils";
+import { classNames, inRange, isDefined } from "~/utils";
 
 export const Battery = ({
   value,
@@ -24,7 +24,7 @@ export const Battery = ({
     return color;
   };
 
-  const almostEmpty = percentage > 0 && percentage < 10;
+  const almostEmpty = inRange(0, 10, percentage);
   const almostFull = percentage > 49;
   const charging = isDefined(value) && value === 0;
 

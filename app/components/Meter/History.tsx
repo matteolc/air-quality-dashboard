@@ -2,6 +2,18 @@ import { classNames, isDefined } from "~/utils";
 import type { MeterVariation } from ".";
 import { Percentile } from "./Percentile";
 
+const Value = ({ value, success }: { value?: number; success?: boolean }) => (
+  <div
+    className={classNames(
+      isDefined(value) ? "animate-none" : "animate-pulse",
+      isDefined(success) ? (success ? "text-green-400" : "text-red-600") : "",
+      "text-right font-bold",
+    )}
+  >
+    {(value || 0).toLocaleString("en-US", { maximumFractionDigits: 0 })}
+  </div>
+);
+
 export const History = ({
   min,
   max,
@@ -26,33 +38,11 @@ export const History = ({
   <div className="flex flex-col">
     <div className="flex justify-end">
       <div className="flex flex-col mr-8 mt-2.5 text-4xl">
-        <div
-          className={classNames(
-            isDefined(max) ? "animate-none" : "animate-pulse",
-            "text-right font-bold text-red-600",
-          )}
-        >
-          {(max || 0).toLocaleString("en-US", { maximumFractionDigits: 0 })}
-        </div>
-        <div
-          className={classNames(
-            isDefined(min) ? "animate-none" : "animate-pulse",
-            "text-right font-bold text-green-400",
-          )}
-        >
-          {(min || 0).toLocaleString("en-US", { maximumFractionDigits: 0 })}
-        </div>
+        <Value value={max} success={false} />
+        <Value value={min} success={true} />
       </div>
-      <div>
-        <div
-          className={classNames(
-            className,
-            isDefined(avg) ? "animate-none" : "animate-pulse",
-            "text-right font-bold",
-          )}
-        >
-          {(avg || 0).toLocaleString("en-US", { maximumFractionDigits: 0 })}
-        </div>
+      <div className={className}>
+        <Value value={avg} />
       </div>
     </div>
     <div className="flex gap-4 justify-end mt-2">
