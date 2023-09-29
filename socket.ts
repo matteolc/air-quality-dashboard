@@ -18,11 +18,16 @@ type SocketData = SocketBootData & {
   pressure: number;
   humidity: number;
   iaq: number;
+  staticIaq: number;
   eco2: number;
   bvoc: number;
   gasResistance: number;
   gasPercentage: number;
   iaqAccuracy: 0 | 1 | 2 | 3;
+  staticIaqAccuracy: 0 | 1 | 2 | 3;
+  bvocAccuracy: 0 | 1 | 2 | 3;
+  co2Accuracy: 0 | 1 | 2 | 3;
+  gasPercentageAccuracy: 0 | 1 | 2 | 3;
   stabStatus: 0 | 1;
   runInStatus: 0 | 1;
   vbat: number;

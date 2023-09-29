@@ -33,25 +33,22 @@ export const Meter = ({
   threshold?: number;
 }) => (
   <div className="flex flex-col shrink-0">
-    <div className="flex flex-row">
-      <div className="flex items-baseline justify-between w-full">
-        <div className="flex-row flex">
-          <span
-            className={
-              variation === MeterVariation.DARK
-                ? "text-cyan-950"
-                : "text-cornflower-400"
-            }
-          >
-            {icon}
-          </span>
-          <div className="flex flex-col gap-2">
+    <div className="flex items-baseline justify-between w-full">
+      <div className="flex">
+        <div
+          className={
+            variation === MeterVariation.DARK
+              ? "text-cyan-950"
+              : "text-cornflower-400"
+          }
+        >
+          {icon}
+        </div>
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-row gap-4">
             {showName && (
               <div
-                className={classNames(
-                  "font-bold",
-                  "text-cyan-950 text-5xl align-baseline",
-                )}
+                className={classNames("font-bold", "text-cyan-950 text-5xl")}
               >
                 {type}
               </div>
@@ -59,36 +56,33 @@ export const Meter = ({
 
             {accuracy !== undefined && (
               <div className="flex">
-                <div
-                  className={classNames(
-                    accuracy > 0 ? "bg-green-400" : "bg-cornflower-200",
-                    "rounded-l-sm shadow-sm shadow-cornflower-600 w-4 h-3",
-                  )}
-                ></div>
-                <div
-                  className={classNames(
-                    accuracy > 1 ? "bg-green-400" : "bg-cornflower-200",
-                    "shadow-sm shadow-cornflower-600 w-4 h-3",
-                  )}
-                ></div>
-                <div
-                  className={classNames(
-                    accuracy > 2 ? "bg-green-400" : "bg-cornflower-200",
-                    "rounded-r-sm shadow-sm shadow-cornflower-600 w-4 h-3",
-                  )}
-                ></div>
+                {[0, 1, 2].map((value) => {
+                  return (
+                    <div
+                      key={value}
+                      className={classNames(
+                        accuracy > value ? "bg-green-400" : "bg-cornflower-200",
+                        value === 0 ? "rounded-l-sm" : "",
+                        value === 2 ? "rounded-r-sm" : "",
+                        "mt-1.5 rounded-l-sm shadow-sm shadow-cornflower-600 w-4 h-4",
+                      )}
+                    />
+                  );
+                })}
               </div>
             )}
-            {value !== undefined && showColorCode && (
-              <div
-                className={classNames(
-                  colorFor(value, type),
-                  "rounded-full w-8 h-4",
-                )}
-              ></div>
-            )}
           </div>
+          {value !== undefined && showColorCode && (
+            <div
+              className={classNames(
+                colorFor(value, type),
+                "rounded-full w-full h-4",
+              )}
+            ></div>
+          )}
         </div>
+      </div>
+      {unit !== MeterUnit.NONE && (
         <div className="flex justify-end h-full gap-4">
           <div
             className={classNames(
@@ -98,10 +92,10 @@ export const Meter = ({
                 : "text-cornflower-200 text-2xl",
             )}
           >
-            {unit !== MeterUnit.NONE && unit}
+            {unit}
           </div>
         </div>
-      </div>
+      )}
     </div>
     {Object.keys(historyProps).length > 0 ? (
       <History

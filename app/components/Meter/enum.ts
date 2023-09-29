@@ -6,7 +6,7 @@ export enum MeterVariation {
 export enum MeterType {
   BVOC = "BVOC",
   IAQ = "IAQ",
-  CO2 = "CO2",
+  CO2 = "eCO2",
   TEMPERATURE = "TEMPERATURE",
   PRESSURE = "PRESSURE",
   HUMIDITY = "HUMIDITY",

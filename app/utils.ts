@@ -97,6 +97,10 @@ export function isDefined(value: number | string | boolean | undefined) {
   return value !== undefined;
 }
 
+export function inRange(min: number, max: number, value?: number) {
+  return value !== undefined && value >= min && value <= max;
+}
+
 export function useRevalidateOnFocus({
   enabled = false,
 }: {

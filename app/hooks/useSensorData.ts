@@ -11,6 +11,8 @@ export function useSensorsData() {
   const [CO2, setCO2] = useState<number | undefined>();
   const [date, setDate] = useState<Date | undefined>();
   const [IAQAccuracy, setIAQAccuracy] = useState<0 | 1 | 2 | 3 | undefined>();
+  const [BVOCAccuracy, setBVOCAccuracy] = useState<0 | 1 | 2 | 3 | undefined>();
+  const [CO2Accuracy, setCO2Accuracy] = useState<0 | 1 | 2 | 3 | undefined>();
   const [isStable, setIsStable] = useState<boolean>(false);
   const [isReady, setIsReady] = useState<boolean>(false);
   const [vbat, setVbat] = useState<number | undefined>();
@@ -28,6 +30,8 @@ export function useSensorsData() {
     setIsReady(false);
     setIsStable(false);
     setIAQAccuracy(undefined);
+    setBVOCAccuracy(undefined);
+    setCO2Accuracy(undefined);
     setVbat(undefined);
   };
 
@@ -44,6 +48,8 @@ export function useSensorsData() {
       iaq,
       eco2,
       iaqAccuracy,
+      bvocAccuracy,
+      co2Accuracy,
       runInStatus,
       stabStatus,
       vbat,
@@ -56,6 +62,8 @@ export function useSensorsData() {
     setIAQ(Number(iaq.toFixed(0)));
     setCO2(Number(eco2.toFixed(0)));
     setIAQAccuracy(iaqAccuracy);
+    setBVOCAccuracy(bvocAccuracy);
+    setCO2Accuracy(co2Accuracy);
     setIsReady(runInStatus === 1);
     setIsStable(stabStatus === 1);
     setVbat(vbat);
@@ -70,6 +78,8 @@ export function useSensorsData() {
     BVOC,
     IAQ,
     IAQAccuracy,
+    BVOCAccuracy,
+    CO2Accuracy,
     CO2,
     isReady,
     isStable,

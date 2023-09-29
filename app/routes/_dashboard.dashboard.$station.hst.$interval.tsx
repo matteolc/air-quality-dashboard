@@ -2,7 +2,6 @@ import { redirect, type LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import {
   Header,
-  IAQIndicator,
   Meter,
   MeterType,
   MeterUnit,
@@ -62,34 +61,36 @@ export default function Index() {
         count={stations.length}
       />
       <div className="grid grid-flow-col grid-cols-3 gap-4">
-        <div className="grid grid-cols-1 grid-rows-3">
+        <div className="grid grid-cols-1 grid-rows-3 gap-2">
           <Meter
+            value={getLatestStats(MeterType.IAQ.toLowerCase())?.avg}
             maximumFractionDigits={0}
             unit={MeterUnit.NONE}
             type={MeterType.IAQ}
             icon={<AqiIcon />}
             {...getLatestStats(MeterType.IAQ.toLowerCase())}
+            showColorCode={true}
           />
           <Meter
+            value={getLatestStats(MeterType.BVOC.toLowerCase())?.avg}
             maximumFractionDigits={1}
             type={MeterType.BVOC}
             unit={MeterUnit.PPM}
             icon={<TvocIcon />}
             {...getLatestStats(MeterType.BVOC.toLowerCase())}
+            showColorCode={true}
           />
           <Meter
+            value={getLatestStats(MeterType.CO2.toLowerCase())?.avg}
             maximumFractionDigits={0}
             type={MeterType.CO2}
             unit={MeterUnit.PPM}
             icon={<Co2Icon />}
             {...getLatestStats(MeterType.CO2.toLowerCase())}
+            showColorCode={true}
           />
         </div>
         <div className="ml-8 flex flex-row">
-          <IAQIndicator
-            value={getLatestStats(MeterType.IAQ.toLowerCase())?.avg}
-            max={500}
-          />
           <Navigator />
         </div>
 

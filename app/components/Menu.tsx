@@ -2,7 +2,7 @@ import { NavLink } from "@remix-run/react";
 import { TimeInterval } from "~/models";
 import { classNames } from "~/utils";
 
-export const ViewSelector = ({
+export const Menu = ({
   station,
   pathname,
   loading,

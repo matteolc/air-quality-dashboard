@@ -1,16 +1,20 @@
 import { classNames, isDefined } from "~/utils";
 
-export const BatteryIndicator = ({
+export const Battery = ({
   value,
-  max = 4.1,
-  min = 3.0,
+  max = 4.2,
+  min = 2.8,
 }: {
   value?: number;
   max?: number;
   min?: number;
 }) => {
-  const percentage =
-    value === undefined ? 0 : Math.round(((value - min) / (max - min)) * 100);
+  const percentage = Math.min(
+    value === undefined
+      ? 0
+      : Math.max(Math.round(((value - min) / (max - min)) * 100), 0),
+    100,
+  );
 
   const colorForPercentage = (percentage: number) => {
     if (percentage === 0) return "bg-cornflower-200";
@@ -37,27 +41,29 @@ export const BatteryIndicator = ({
           <div
             className={classNames(
               colorForPercentage(percentage),
-              "cursor-default rounded-sm text-xs font-bold leading-none flex items-center justify-center m-1 py-2 text-center ",
+              "h-5 cursor-default rounded-sm text-xs font-bold leading-none flex items-center justify-center m-1 py-2 text-center ",
             )}
             style={{ width: `${percentage}%` }}
           >
-            {charging ? (
-              <div
-                className={classNames(
-                  almostEmpty ? "text-red-600" : "text-cornflower-200",
-                  "absolute left-0 mx-8 ",
+            {isDefined(value) && (
+              <div className="absolute mx-8 -left-0.5">
+                {charging ? (
+                  <span
+                    className={classNames(
+                      almostEmpty ? "text-red-600" : "text-cornflower-200",
+                    )}
+                  >
+                    USB
+                  </span>
+                ) : (
+                  <span
+                    className={classNames(
+                      almostFull ? "text-cyan-950" : "text-cornflower-200",
+                    )}
+                  >
+                    {`${percentage}%`}
+                  </span>
                 )}
-              >
-                <span className="-ml-1">USB</span>
-              </div>
-            ) : (
-              <div
-                className={classNames(
-                  almostFull ? "text-cyan-950" : "text-cornflower-200",
-                  "absolute left-0 mx-8 ",
-                )}
-              >
-                {`${percentage}%`}
               </div>
             )}
           </div>

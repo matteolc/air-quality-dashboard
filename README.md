@@ -1,6 +1,109 @@
-# Remix Blues Stack
+# Air Quality Dashboard
 
-![The Remix Blues Stack](https://repository-images.githubusercontent.com/461012689/37d5bd8b-fa9c-4ab0-893c-f0a199d5012d)
+An Air Quality real-time and historical dashboard built with [Remix](https://remix.run) on top of the Remix Blues Stack, with:
+
+- [TimescaleDB](https://www.timescale.com/) TimescaleDB is a PostgreSQL based database with advanced support for timeseries data. It is used to store
+sensor data in a hypertable and query data efficiently in time buckets to extract basic statistics.
+- [SocketIO](https://socket.io) SocketIO is a websocket client and server implementation which provides bidirectional and low-latency communication for every platform. It is used to control
+communication between the dashboard and the environmental stations and for real-time updates of the dashboard.
+- [BME688](https://www.bosch-sensortec.com/products/environmental-sensors/gas-sensors/bme688/) The BME688 is [Bosch](https://www.bosch-sensortec.com/) 4-in-1 Gas Sensor aimed at Air quality and specific gas sensing. The BME688 features Artificial Intelligence (AI) and integrated high-linearity and high-accuracy pressure, humidity and temperature sensors.
+- [BSEC](https://www.bosch-sensortec.com/software-tools/software/bsec/) BSEC is a [Bosch](https://www.bosch-sensortec.com/) library which provides higher-level signal processing and fusion for the BME680 ([BME68x-Sensor-API](https://github.com/BoschSensortec/BME68x-Sensor-API) on Github). BSEC precisely performs several calculations outside the device such as ambient air temperature, ambient relative humidity, pressure and air quality (IAQ) level.
+
+## Main features
+
+- Shows an onboarding screen until the first station is provisioned. As soon as a station has been provisioned, confetti rain and a button that links to the new station dashboard will appear.
+- Shows a real-time dashboard with Air Quality (IAQ, BVOC and CO2) and Weather (Temperature, Pressure, Humidity) data for every connected station.
+- Shows a real-time indication of the status of the BME688 sensor, to validate the confidence of readings (*)
+- Shows a real-time indication of the battery charge level (when available)
+- Shows an hour/day/week/month/year cumulative report with AVG/MIN/MAX/P95/P90/P75/P50 for each parameter monitored.
+- Rains confetti on the dashboard everytime a new station is added.
+- Allows to delete a station and to truncate to the last month the readings for each parameter monitored.
+
+Data stored in the database:
+
+- Basic information regarding the station: name, location, the machine UUID of the board
+- The reading value of each parameter monitored
+
+(*) A visual indication is given once the sensor data is ready, according to:
+
+- Gas sensor stabilization status. Indicates initial stabilization status of the gas sensor element: stabilization is ongoing (0) or stabilization is finished (1)
+- Gas sensor run-in status. Indicates power-on stabilization status of the gas sensor element: stabilization is ongoing (0) or stabilization is finished (1).
+- Furhtermore, **IAQ Accuracy** is shown in the IAQ meter on a scale from 0 to 3. IAQ accuracy indicator will notify the user when she/he should initiate a calibration process. Calibration is performed automatically in the background if the sensor is exposed to clean and polluted air for approximately 30 minutes each.
+
+| Name                       | Value |  Accuracy description                                                                                       |
+|----------------------------|-------|-------------------------------------------------------------------------------------------------------------|
+| UNRELIABLE                 |   0   | Sensor data is unreliable, the sensor must be calibrated                                                    |
+| LOW_ACCURACY               |   1   | Low accuracy, sensor should be calibrated                                                                   |
+| MEDIUM_ACCURACY            |   2   | Medium accuracy, sensor calibration may improve performance                                                 |
+| HIGH_ACCURACY              |   3   | High accuracy                                                                                               |
+
+| Virtual sensor             | Value |  Accuracy description                                                                                                                                         |
+|----------------------------|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| IAQ                        |   0   | Stabilization / run-in ongoing                                                                                                                                |
+|                            |   1   | Low accuracy,to reach high accuracy(3),please expose sensor once to good air (e.g. outdoor air) and bad air (e.g. box with exhaled breath) for auto-trimming  |
+|                            |   2   | Medium accuracy: auto-trimming ongoing                                                                                                                        |
+|                            |   3   | High accuracy
+
+### Air Quality
+
+- **IAQ** The IAQ scale ranges from 0 (clean air) to 500 (heavily polluted air). During operation, algorithms automatically calibrate and adapt themselves to the typical environments where the sensor is operated (e.g., home, workplace, inside a car, etc.).This automatic background calibration ensures that users experience consistent IAQ performance. The calibration process considers the recent measurement history (typ. up to four days) to ensure that IAQ=50 corresponds to typical good air and IAQ=200 indicates typical polluted air.
+- **CO2** CO2 equivalent estimate [ppm]
+- **BVOC** Breath VOC concentration estimate [ppm]
+- **Gas** Gas sensor signal [Ohm]. Gas resistance measured directly by the BME680 in Ohm.The resistance value changes due to varying VOC concentrations (the higher the concentration of reducing VOCs, the lower the resistance and vice versa).
+
+The difference between IAQ and static IAQ (sIAQ) relies in the scaling factor calculated based on the recent sensor history. The sIAQ output has been optimized for stationary applications (e.g. fixed indoor devices) whereas the IAQ output is ideal for mobile application (e.g. carry-on devices).
+
+- **bVOCeq** The breath VOC equivalent (bVOCeq) estimates the total VOC concentration [ppm] in the environment. It is calculated based on the sIAQ output and derived from lab tests.
+- **CO2eq** The CO2 equivalent estimates a CO2-equivalent (CO2eq) concentration [ppm] in the environment. It is also calculated based on the sIAQ output and derived from VOC measurements and correlation from field studies.
+
+Since bVOCeq and CO2eq are based on the sIAQ output, they are expected to perform optimally in stationnary applications where the main source of VOCs in the environment comes from human activity (e.g. in a bedroom).
+
+### Weather
+
+- **Temperature** Sensor heat compensated temperature [degrees Celsius]. Temperature measured by BME680 which is compensated for the influence of sensor (heater) in degree Celsius. The self heating introduced by the heater is depending on the sensor operation mode and the sensor supply voltage. The BME680 is factory trimmed, thus the temperature sensor of the BME680 is very accurate. The temperature value is a very local measurement value and can be influenced by external heat sources.
+- **Humidity** Sensor heat compensated humidity [%]. Relative measured by BME680 which is compensated for the influence of sensor (heater) in %. Relative humidity strongly depends on the temperature (it is measured at). It may require a conversion to the temperature outside of the device.
+- **Pressure** Pressure sensor signal [Pa]. Pressure directly measured by the BME680 in Pa.
+
+## Arduino Code
+
+The Arduino code will:
+
+- Send BME688 data at an interval of 5s
+- Turn off the onboard led when BME688 readings are stable
+- Use the NeoPixel as a color-coded IAQ indicator
+
+## Local development
+
+To try and test the application on your local machine you will need:
+
+- **Docker** Used for the TimescaleDB service. Run `docker-compose up` to pull the image and start the service.
+- **BME688** Used to gather environmental data. I used the [Pimoroni](https://shop.pimoroni.com/products/bme688-breakout?variant=39336951709779) one.
+- An **ESP32** or **Raspberry Pico W** Used to send environmental data via Wi-Fi or BLE. I used the [Adafruit Feather ESP32 v2]() board which comes with a handy I2C connector, a LiPo charger and connector and a
+NeoPixel RGBW LED.
+
+Steps to start the dashboard server and client:
+
+- Clone this repository
+- Start TimescaleDB with `docker-compose up`
+- Run database migrations `npx prisma migrate dev`
+- Start the dev server `npx run dev`
+
+To provision your ESP32 or Raspberry Pico W board:
+
+- Connect the BME688 sensor to I2C
+- Upload the Arduino sketch with Arduino IDE
+- Provision Wi-Fi and SocketIO service address
+
+As soon as the board connects to the server you will see a confetti rain and a link to the dashboard.
+
+## Production build
+
+## Contributions
+
+Your contribution is welcome. Open a PR and we can take it from there.
+
+
+# Remix Blues Stack
 
 Learn more about [Remix Stacks](https://remix.run/stacks).
 

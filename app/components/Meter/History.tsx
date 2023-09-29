@@ -55,7 +55,7 @@ export const History = ({
         </div>
       </div>
     </div>
-    <div className="flex gap-4 justify-end">
+    <div className="flex gap-4 justify-end mt-2">
       <div className={classNames(className, "flex gap-2")}>
         <Percentile name="P95" value={p95} variation={variation} />
         <Percentile name="P90" value={p90} variation={variation} />

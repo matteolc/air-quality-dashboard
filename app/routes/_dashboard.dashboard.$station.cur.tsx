@@ -2,7 +2,6 @@ import type { Socket } from "socket.io-client";
 import { useSocket } from "~/context";
 import {
   Header,
-  IAQIndicator,
   Meter,
   MeterType,
   MeterUnit,
@@ -24,7 +23,7 @@ import {
   TvocIcon,
 } from "~/icons";
 import { IconForPressure } from "~/components/Meter/utils";
-import { BatteryIndicator } from "~/components/BatteryIndicator";
+import { Battery } from "~/components/Battery";
 
 export default function Index() {
   const { setData, resetData, date, UUID, ...data } = useSensorsData();
@@ -96,7 +95,7 @@ export default function Index() {
         <div
           className={classNames(
             waiting ? "animate-pulse" : "",
-            "grid grid-cols-1 grid-rows-3",
+            "grid grid-cols-1 grid-rows-3 gap-2",
           )}
         >
           <Meter
@@ -108,6 +107,7 @@ export default function Index() {
             isReady={isReady}
             isStable={isStable}
             accuracy={IAQAccuracy}
+            showColorCode={true}
           />
           <Meter
             maximumFractionDigits={1}
@@ -131,7 +131,6 @@ export default function Index() {
           />
         </div>
         <div className="ml-8 flex flex-row">
-          <IAQIndicator value={IAQ} max={500} />
           <Navigator />
         </div>
         <div
@@ -170,7 +169,7 @@ export default function Index() {
       </div>
 
       <div className="flex justify-end -mr-20 mt-4">
-        <BatteryIndicator value={vbat} />
+        <Battery value={vbat} />
       </div>
       <Confetti confetti={confetti} />
     </>

@@ -26,22 +26,39 @@ const colorForCo2 = (value: number) => {
 
 const colorForBvoc = (value: number) => {
   let color = "bg-green-400";
-  if (value > 0.9) {
-    color = "bg-yellow-400";
-  }
-  if (value > 2.9) {
+  if (value > 1.0) {
     color = "bg-amber-300";
   }
-  if (value > 9.9) {
+  if (value > 5.0) {
     color = "bg-orange-600  animate-pulse";
   }
-  if (value > 19.9) {
+  if (value > 15.0) {
     color = "bg-red-600 animate-pulse";
   }
-  if (value > 29.9) {
+  if (value > 30.0) {
     color = "bg-purple-700 animate-pulse";
   }
-  if (value > 39.9) {
+  if (value > 40.0) {
+    color = "bg-amber-950 animate-pulse";
+  }
+  return color;
+};
+
+const colorForIaq = (value: number) => {
+  let color = "bg-green-400";
+  if (value > 50) {
+    color = "bg-amber-300";
+  }
+  if (value > 100) {
+    color = "bg-orange-600  animate-pulse";
+  }
+  if (value > 150) {
+    color = "bg-red-600 animate-pulse";
+  }
+  if (value > 200) {
+    color = "bg-purple-700 animate-pulse";
+  }
+  if (value > 300) {
     color = "bg-amber-950 animate-pulse";
   }
   return color;
@@ -50,6 +67,7 @@ const colorForBvoc = (value: number) => {
 export const colorFor = (value: number, type: MeterType) => {
   if (type === MeterType.CO2) return colorForCo2(value);
   if (type === MeterType.BVOC) return colorForBvoc(value);
+  if (type === MeterType.IAQ) return colorForIaq(value);
   return "bg-green-400";
 };
 
