@@ -8,6 +8,7 @@ export function useSensorsData() {
   const [pressure, setPressure] = useState<number | undefined>();
   const [BVOC, setBVOC] = useState<number | undefined>();
   const [IAQ, setIAQ] = useState<number | undefined>();
+  const [staticIAQ, setStaticIAQ] = useState<number | undefined>();
   const [CO2, setCO2] = useState<number | undefined>();
   const [date, setDate] = useState<Date | undefined>();
   const [IAQAccuracy, setIAQAccuracy] = useState<0 | 1 | 2 | 3 | undefined>();
@@ -25,6 +26,7 @@ export function useSensorsData() {
     setHumidity(undefined);
     setBVOC(undefined);
     setIAQ(undefined);
+    setStaticIAQ(undefined);
     setCO2(undefined);
     setDate(undefined);
     setIsReady(false);
@@ -52,6 +54,7 @@ export function useSensorsData() {
       co2Accuracy,
       runInStatus,
       stabStatus,
+      staticIaq,
       vbat,
     } = data;
     setDate(new Date(epoch * 1000));
@@ -60,6 +63,7 @@ export function useSensorsData() {
     setHumidity(Number(humidity.toFixed(1)));
     setBVOC(Number(bvoc && bvoc.toFixed(1)));
     setIAQ(Number(iaq.toFixed(0)));
+    setStaticIAQ(Number(staticIaq.toFixed(0)));
     setCO2(Number(eco2.toFixed(0)));
     setIAQAccuracy(iaqAccuracy);
     setBVOCAccuracy(bvocAccuracy);
@@ -77,6 +81,7 @@ export function useSensorsData() {
     pressure,
     BVOC,
     IAQ,
+    staticIAQ,
     IAQAccuracy,
     BVOCAccuracy,
     CO2Accuracy,

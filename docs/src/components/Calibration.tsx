@@ -36,7 +36,7 @@ export function Calibration() {
       className="scroll-mt-12 py-12"
     >
       <Container>
-        <SectionHeading number="1" id="sensor-calibration-title">
+        <SectionHeading number="4" id="sensor-calibration-title">
           Calibration
         </SectionHeading>
         <p className="mt-8 font-display text-4xl font-bold tracking-tight text-slate-900">
@@ -44,11 +44,16 @@ export function Calibration() {
           of its readings.
         </p>
         <p className="mt-4 text-lg tracking-tight text-slate-700">
-          IAQ accuracy is shown in the IAQ meter on a scale from 0 to 3. IAQ
+          IAQ accuracy is shown inside the IAQ meter on a scale from 0 to 3. IAQ
           accuracy indicator will notify the user when she/he should initiate a
           calibration process. Calibration is performed automatically in the
           background if the sensor is exposed to clean and polluted air for
           approximately 30 minutes each.
+        </p>
+
+        <p className="mt-4 text-lg tracking-tight text-slate-700">
+          When the sensor is undergoing calibration values in the UI are shown
+          slightly transparent.
         </p>
         <p className="mt-4 text-lg tracking-tight text-slate-700">
           Furthermore, gas sensor stabilization status, indicating initial

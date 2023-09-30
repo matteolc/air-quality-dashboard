@@ -79,7 +79,7 @@ export default function Index() {
     humidity,
     pressure,
     BVOC,
-    IAQ,
+    staticIAQ,
     CO2,
     IAQAccuracy,
     isReady,
@@ -102,7 +102,7 @@ export default function Index() {
             maximumFractionDigits={0}
             unit={MeterUnit.NONE}
             type={MeterType.IAQ}
-            value={IAQ}
+            value={staticIAQ}
             icon={<AqiIcon />}
             isReady={isReady}
             isStable={isStable}

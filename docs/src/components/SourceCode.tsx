@@ -19,8 +19,7 @@ export function SourceCode() {
               Get the source code
             </h2>
             <p className="mt-4 text-lg tracking-tight text-cyan-200">
-              Enter your email address and I’ll send you a sample from the book
-              containing two of my favorite chapters.
+              Head over to Github.
             </p>
           </div>
         </Container>

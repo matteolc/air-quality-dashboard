@@ -1,5 +1,9 @@
+import Image from 'next/image'
 import { Container } from '@/components/Container'
 import { SectionHeading } from '@/components/SectionHeading'
+import iaqImage from '@/images/iaq.png'
+import bvocImage from '@/images/bvoc.png'
+import eco2Image from '@/images/eco2.png'
 
 export function AirQuality() {
   return (
@@ -10,24 +14,24 @@ export function AirQuality() {
         className="scroll-mt-12 py-12"
       >
         <Container>
-          <SectionHeading number="2" id="screencasts-title">
+          <SectionHeading number="3" id="screencasts-title">
             Air Quality
           </SectionHeading>
           <p className="mt-8 font-display text-4xl font-bold tracking-tight text-slate-900">
             Air Quality indicators measured by the BME688 gas sensor.
           </p>
           <p className="mt-4 text-lg tracking-tight text-slate-700">
-            The difference between IAQ and static IAQ (sIAQ) relies in the
-            scaling factor calculated based on the recent sensor history. The
-            sIAQ output has been optimized for stationary applications (e.g.
-            fixed indoor devices) whereas the IAQ output is ideal for mobile
-            application (e.g. carry-on devices).
+            Data collected by the BME688 sensor is fed to the BSEC algorithm
+            on-board the device to extract air quality measures. The BSEC
+            library provides two different air quality outputs: IAQ and static
+            IAQ (sIAQ). The IAQ output is optimized for mobile applications,
+            whereas the sIAQ output is optimized for stationary applications.
           </p>
           <p className="mt-4 text-lg tracking-tight text-slate-700">
-            Breath VOC and CO2 equivalents are based on the static IAQ output.
-            They are expected to perform optimally in stationary applications
-            where the main source of VOCs in the environment comes from human
-            activity (e.g. in a bedroom).
+            The BSEC library also provides breath VOC and CO2 equivalents based
+            on the static IAQ output. They are expected to perform optimally in
+            stationary applications where the main source of VOCs in the
+            environment comes from human activity (e.g. in a bedroom).
           </p>
         </Container>
       </section>
@@ -39,7 +43,7 @@ export function AirQuality() {
         <div className="overflow-hidden lg:relative">
           <Container
             size="md"
-            className="tems-end relative grid grid-cols-2 gap-y-12 py-8 lg:static"
+            className="relative grid grid-cols-2 items-center gap-y-12 py-8 lg:static"
           >
             <div>
               <h2 className="font-display text-6xl font-extrabold tracking-tight text-white sm:w-3/4 md:w-3/4 lg:w-auto">
@@ -57,6 +61,42 @@ export function AirQuality() {
                 indicates typical polluted air.
               </p>
             </div>
+            <div>
+              <Image className="ml-6 w-60 rounded-2xl" src={iaqImage} alt="" />
+
+              <ul className="ml-6 mt-8 flex flex-wrap gap-2 text-lg font-bold tracking-tight text-slate-700">
+                <li className="">
+                  <span className="h-4 w-4 rounded-full bg-green-400 px-3 py-2">
+                    0-50
+                  </span>
+                </li>
+                <li className="mb-4">
+                  <span className="h-4 w-4 rounded-full bg-yellow-400 px-3 py-2">
+                    51-100
+                  </span>
+                </li>
+                <li className="mb-4">
+                  <span className="h-4 w-4 rounded-full bg-amber-300 px-3 py-2">
+                    101-150
+                  </span>
+                </li>
+                <li className="mb-4">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-orange-600 px-3 py-2 text-white">
+                    151-200
+                  </span>
+                </li>
+                <li className="mb-4">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-red-600 px-3 py-2 text-white">
+                    201-300
+                  </span>
+                </li>
+                <li className="mb-4">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-purple-700 px-3 py-2 text-white">
+                    301-500
+                  </span>
+                </li>
+              </ul>
+            </div>
           </Container>
         </div>
       </section>
@@ -68,7 +108,7 @@ export function AirQuality() {
         <div className="overflow-hidden lg:relative">
           <Container
             size="md"
-            className="tems-end relative grid grid-cols-2 gap-y-12 py-8 lg:static"
+            className="relative grid grid-cols-2 items-center gap-y-12 py-8 lg:static"
           >
             <div>
               <h2 className="font-display text-6xl font-extrabold tracking-tight text-cyan-950 sm:w-3/4 md:w-3/4 lg:w-auto">
@@ -81,6 +121,42 @@ export function AirQuality() {
                 correlation from field studies.
               </p>
             </div>
+            <div>
+              <Image className="ml-6 w-60 rounded-2xl" src={eco2Image} alt="" />
+
+              <ul className="ml-6 mt-8 flex flex-wrap gap-2 text-lg font-bold tracking-tight text-slate-700">
+                <li className="">
+                  <span className="h-4 w-4 rounded-full bg-green-400 px-3 py-2">
+                    0-899
+                  </span>
+                </li>
+                <li className="mb-4">
+                  <span className="h-4 w-4 rounded-full bg-yellow-400 px-3 py-2">
+                    899-1099
+                  </span>
+                </li>
+                <li className="mb-4">
+                  <span className="h-4 w-4 rounded-full bg-amber-300 px-3 py-2">
+                    1099-1499
+                  </span>
+                </li>
+                <li className="mb-4">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-orange-600 px-3 py-2 text-white">
+                    1499-1999
+                  </span>
+                </li>
+                <li className="mb-4">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-red-600 px-3 py-2 text-white">
+                    1999-2999
+                  </span>
+                </li>
+                <li className="mb-4">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-purple-700 px-3 py-2 text-white">
+                    2999-4999
+                  </span>
+                </li>
+              </ul>
+            </div>
           </Container>
         </div>
       </section>
@@ -92,7 +168,7 @@ export function AirQuality() {
         <div className="overflow-hidden lg:relative">
           <Container
             size="md"
-            className="tems-end relative grid grid-cols-2 gap-y-12 py-8 lg:static"
+            className="relative grid grid-cols-2 items-center gap-y-12 py-8 lg:static"
           >
             <div>
               <h2 className="font-display text-6xl font-extrabold tracking-tight text-white sm:w-3/4 md:w-3/4 lg:w-auto">
@@ -103,6 +179,46 @@ export function AirQuality() {
                 concentration [ppm] in the environment. It is calculated based
                 on the sIAQ output and derived from lab tests.
               </p>
+            </div>
+            <div>
+              <Image
+                className=" ml-6 w-60 rounded-2xl"
+                src={bvocImage}
+                alt=""
+              />
+
+              <ul className="ml-6 mt-8 flex flex-wrap gap-2 text-lg font-bold tracking-tight text-slate-700">
+                <li className="">
+                  <span className="h-4 w-4 rounded-full bg-green-400 px-3 py-2">
+                    0-0.9
+                  </span>
+                </li>
+                <li className="mb-4">
+                  <span className="h-4 w-4 rounded-full bg-yellow-400 px-3 py-2">
+                    0.9-1
+                  </span>
+                </li>
+                <li className="mb-4">
+                  <span className="h-4 w-4 rounded-full bg-amber-300 px-3 py-2">
+                    1-5
+                  </span>
+                </li>
+                <li className="mb-4">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-orange-600 px-3 py-2 text-white">
+                    5-15
+                  </span>
+                </li>
+                <li className="mb-4">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-red-600 px-3 py-2 text-white">
+                    30-40
+                  </span>
+                </li>
+                <li className="mb-4">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-purple-700 px-3 py-2 text-white">
+                    40-50
+                  </span>
+                </li>
+              </ul>
             </div>
           </Container>
         </div>
