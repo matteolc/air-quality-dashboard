@@ -8,6 +8,7 @@ To run the application on your local machine you will need the following softwar
 
 - **Docker** Used for the TimescaleDB service. Run `docker-compose up` to pull the image and start the service.
 - **Arduino IDE**
+- **VCode** with **PlatformIO** extenstion installed
 
 And the following hardware:
 
@@ -25,17 +26,9 @@ Steps to start the dashboard server and client:
 To provision your ESP32 or Raspberry Pico W board:
 
 - Connect the BME688 sensor to I2C
+- Build and upload SPIFFS filesystem with PlatformIO
 - Upload the Arduino sketch with Arduino IDE
-- Provision Wi-Fi and SocketIO service address
-
-As soon as the board connects to the server you will see a confetti rain and a link to the dashboard.
-
-## Production build
-
-## Contributions
-
-Your contribution is welcome. Open a PR and we can take it from there.
-
+- Connect to the WiFi network Air Quality Dashboard and follow the instructions on screen
 
 # Remix Blues Stack
 

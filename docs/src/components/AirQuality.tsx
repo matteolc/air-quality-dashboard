@@ -136,7 +136,7 @@ export function AirQuality() {
                   </span>
                 </li>
                 <li className="mb-4">
-                  <span className="h-4 w-4 rounded-full bg-amber-300 px-3 py-2">
+                  <span className="h-4 w-4 rounded-full bg-amber-500 px-3 py-2">
                     1099-1499
                   </span>
                 </li>

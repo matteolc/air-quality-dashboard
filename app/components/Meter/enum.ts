@@ -33,12 +33,12 @@ export enum CO2Range {
 }
 
 export enum BVOCRange {
-  GOOD = 0.9,
-  MODERATE = 1.0,
-  UNHEALTHY_SENSITIVE = 5.0,
-  UNHEALTHY = 15.0,
-  VERY_UNHEALTHY = 30.0,
-  HAZARDOUS = 40.0,
+  GOOD = 1,
+  MODERATE = 2,
+  UNHEALTHY_SENSITIVE = 5,
+  UNHEALTHY = 15,
+  VERY_UNHEALTHY = 30,
+  HAZARDOUS = 40,
 }
 
 export enum IAQRange {
@@ -53,8 +53,8 @@ export enum IAQRange {
 export enum RangeClass {
   GOOD = "bg-green-400",
   MODERATE = "bg-yellow-400",
-  UNHEALTHY_SENSITIVE = "bg-amber-300",
-  UNHEALTHY = "bg-orange-600 animate-pulse",
-  VERY_UNHEALTHY = "bg-red-600  animate-pulse",
-  HAZARDOUS = "bg-purple-700  animate-pulse",
+  UNHEALTHY_SENSITIVE = "bg-orange-600",
+  UNHEALTHY = "bg-red-600 animate-pulse",
+  VERY_UNHEALTHY = "bg-purple-700  animate-pulse",
+  HAZARDOUS = "bg-amber-900  animate-pulse",
 }

@@ -6,9 +6,10 @@ const rangeForEnum = (
   _enum: typeof CO2Range | typeof BVOCRange | typeof IAQRange,
 ) => {
   const key = Object.keys(_enum).reduce((prev, curr) => {
-    if (value > Number(prev)) return curr;
+    if (value > Number(curr)) return curr;
     return prev;
   });
+  console.dir({ value, _enum, key });
   return _enum[key as keyof typeof _enum];
 };
 
