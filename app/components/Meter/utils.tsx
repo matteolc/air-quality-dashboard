@@ -9,7 +9,6 @@ const rangeForEnum = (
     if (value > Number(curr)) return curr;
     return prev;
   });
-  console.dir({ value, _enum, key });
   return _enum[key as keyof typeof _enum];
 };
 

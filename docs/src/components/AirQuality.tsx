@@ -76,22 +76,22 @@ export function AirQuality() {
                   </span>
                 </li>
                 <li className="mb-4">
-                  <span className="h-4 w-4 rounded-full bg-amber-300 px-3 py-2">
+                  <span className="h-4 w-4 rounded-full bg-orange-600 px-3 py-2 text-white">
                     101-150
                   </span>
                 </li>
                 <li className="mb-4">
-                  <span className="h-4 w-4 animate-pulse rounded-full bg-orange-600 px-3 py-2 text-white">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-red-600 px-3 py-2 text-white">
                     151-200
                   </span>
                 </li>
                 <li className="mb-4">
-                  <span className="h-4 w-4 animate-pulse rounded-full bg-red-600 px-3 py-2 text-white">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-purple-700 px-3 py-2 text-white">
                     201-300
                   </span>
                 </li>
                 <li className="mb-4">
-                  <span className="h-4 w-4 animate-pulse rounded-full bg-purple-700 px-3 py-2 text-white">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-amber-900 px-3 py-2 text-white">
                     301-500
                   </span>
                 </li>
@@ -136,22 +136,22 @@ export function AirQuality() {
                   </span>
                 </li>
                 <li className="mb-4">
-                  <span className="h-4 w-4 rounded-full bg-amber-500 px-3 py-2">
+                  <span className="h-4 w-4 rounded-full bg-orange-600 px-3 py-2 text-white">
                     1099-1499
                   </span>
                 </li>
                 <li className="mb-4">
-                  <span className="h-4 w-4 animate-pulse rounded-full bg-orange-600 px-3 py-2 text-white">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-red-600 px-3 py-2 text-white">
                     1499-1999
                   </span>
                 </li>
                 <li className="mb-4">
-                  <span className="h-4 w-4 animate-pulse rounded-full bg-red-600 px-3 py-2 text-white">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-purple-700 px-3 py-2 text-white">
                     1999-2999
                   </span>
                 </li>
                 <li className="mb-4">
-                  <span className="h-4 w-4 animate-pulse rounded-full bg-purple-700 px-3 py-2 text-white">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-amber-900 px-3 py-2 text-white">
                     2999-4999
                   </span>
                 </li>
@@ -199,22 +199,22 @@ export function AirQuality() {
                   </span>
                 </li>
                 <li className="mb-4">
-                  <span className="h-4 w-4 rounded-full bg-amber-300 px-3 py-2">
+                  <span className="h-4 w-4 rounded-full bg-orange-600 px-3 py-2 text-white">
                     1-5
                   </span>
                 </li>
                 <li className="mb-4">
-                  <span className="h-4 w-4 animate-pulse rounded-full bg-orange-600 px-3 py-2 text-white">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-red-600 px-3 py-2 text-white">
                     5-15
                   </span>
                 </li>
                 <li className="mb-4">
-                  <span className="h-4 w-4 animate-pulse rounded-full bg-red-600 px-3 py-2 text-white">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-purple-700 px-3 py-2 text-white">
                     30-40
                   </span>
                 </li>
                 <li className="mb-4">
-                  <span className="h-4 w-4 animate-pulse rounded-full bg-purple-700 px-3 py-2 text-white">
+                  <span className="h-4 w-4 animate-pulse rounded-full bg-amber-900 px-3 py-2 text-white">
                     40-50
                   </span>
                 </li>

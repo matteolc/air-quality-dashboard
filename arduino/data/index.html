@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1">
+  <meta name="description" content="Air Quality Dashboard - Station Provisioning">
+  <meta name="author" content="">
+  <title>Air Quality Dashboard</title>
+
+  <link href="tailwind-3.3.1.min.css" rel="stylesheet" type="text/css">
+
+  <script src="jquery-3.5.1.min.js"></script>
+  <script src="bootstrap-4.4.1.min.js"></script>
+  <script src="script.js"></script>
+
+  <meta charset="utf-8">
+</head>
+
+<body onload=init() class="h-full min-h-full bg-gray-100 pt-8">
+  <div class="flex justify-center text-center px-6 py-12 flex-1 flex-col">
+    <div class="mx-auto w-full max-w-sm rounded-xl">
+      <div class="fixed bottom-0 right-0 z-50 m-4 flex" id="alert-text-box">
+        <div id="alert-text"
+          class="w-full max-w-xs items-center justify-between rounded-lg bg-red-700 text-white border p-4 shadow-sm">
+        </div>
+      </div>
+      <form class="air-quality-dashboard-form">
+        <div class="bg-white px-6 py-12">
+          <div class="mx-auto max-w-2xl text-center">
+            <h2 class="mt-2 font-bold tracking-tight text-gray-900 text-6xl">Air Quality Dashboard</h2>
+          </div>
+          <div id="config">
+            <div class="text-lead tracking-wide text-left ml-2">
+              <p>Configure your local Wi-Fi network:</p>
+            </div>
+
+            <div class="mb-4 mt-2">
+              <select
+                class="mb-3 border-0 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-blue-600 sm:text-sm sm:leading-6 rounded-full min-w-full"
+                id="networks-list-select">
+                <option value="" disabled selected>Network Name</option>
+              </select>
+              <input id="local_pass"
+                class="border-0 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-blue-600 sm:text-sm sm:leading-6 rounded-full min-w-full"
+                placeholder="Password" type="password" />
+            </div>
+            <div class="text-lead tracking-wide text-left ml-2">
+              <p>Give a name to this device:</p>
+            </div>
+            <div class="mb-4 mt-2">
+              <input id="name"
+                class="border-0 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-blue-600 sm:text-sm sm:leading-6 rounded-full min-w-full"
+                placeholder="Name" type="text" />
+            </div>
+
+            <button
+              class="bg-blue-700 rounded-full text-white px-3 py-2 hover:bg-blue-700 hover:ring-offset-2 hover:ring-blue-700 hover:ring-2"
+              id="save-button" type="submit">Save</button>
+          </div>
+
+          <div class="mb-4 mt-4 text-sm text-gray-700 tracking-wide" id="nextstep">
+            <p>Your unit will restart shortly.</p>
+            <p>The light indicator will blink 3 times if the network has been configured correctly.</p>
+            <p>If not, please reconnect to the network air-quality-dashboard-<span
+                id="local-scad-code">XXXX-XXXXX</span> and try
+              again.
+            </p>
+          </div>
+          <p class="mt-5 mb-3 text-sm text-gray-400">Air Quality Dashboard - 2023</p>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>
