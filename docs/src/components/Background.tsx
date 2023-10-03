@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 
-export function Background({ className }: { className?: string }) {
+export function Background(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg width="100%" height="100%">
       <defs>

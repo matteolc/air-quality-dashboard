@@ -7,6 +7,6 @@ export * from "./AqiIcon";
 export * from "./Co2Icon";
 export * from "./TvocIcon";
 export * from "./IndicatorIcon";
-export * from "./Next";
-export * from "./Network";
+export * from "./NextIcon";
+export * from "./NetworkIcon";
 export * from "./CloseIcon";

@@ -6,28 +6,30 @@ An Air Quality real-time and historical dashboard built with [Remix](https://rem
 
 To run the application on your local machine you will need the following software:
 
-- **Docker** Used for the TimescaleDB service. Run `docker-compose up` to pull the image and start the service.
-- **Arduino IDE**
-- **VCode** with **PlatformIO** extenstion installed
+- [Docker](https://www.docker.com/) Used for the TimescaleDB service. Run `docker-compose up` to pull the image and start the service.
+- [Arduino IDE](https://www.arduino.cc/en/software)
+- [VSCode](https://code.visualstudio.com/) with [PlatformIO](https://platformio.org/) extenstion installed
 
 And the following hardware:
 
-- An **ESP32** board. Used to send environmental data via Wi-Fi or BLE. I used the [Adafruit Feather ESP32 v2]() board which comes with a handy I2C connector, a LiPo charger and connector and a
+- An [ESP32](https://www.espressif.com/en/products/socs/esp32) board. Used to send environmental data via Wi-Fi or BLE. I used the [Adafruit Feather ESP32 v2](https://www.adafruit.com/product/5400) board which comes with a handy I2C connector, a LiPo charger and connector and a
 NeoPixel RGBW LED.
-- A **BME688** I2C breakout. Used to gather environmental data. I used the [Pimoroni](https://shop.pimoroni.com/products/bme688-breakout?variant=39336951709779) one.
+- A [BME688](https://www.bosch-sensortec.com/products/environmental-sensors/gas-sensors/bme688/) I2C breakout. Used to gather environmental data. I used the [Pimoroni](https://shop.pimoroni.com/products/bme688-breakout?variant=39336951709779) one.
 
-Steps to start the dashboard server and client:
+Steps to start the dashboard:
 
 - Clone this repository
-- Start TimescaleDB with `docker-compose up`
-- Run database migrations `npx prisma migrate dev`
-- Start the dev server `npx run dev`
+- Start the database service: `docker-compose up -d`
+- Install package deps: `npm i`
+- Generate prisma client: `npx prisma generate`
+- Run database migrations: `npx prisma migrate dev`
+- Start the app: `npx run dev`
 
-To provision your ESP32 or Raspberry Pico W board:
+To provision your board:
 
 - Connect the BME688 sensor to I2C
 - Build and upload SPIFFS filesystem with PlatformIO
-- Upload the Arduino sketch with Arduino IDE
+- Build and upload the Arduino directory with Arduino IDE
 - Connect to the WiFi network Air Quality Dashboard and follow the instructions on screen
 
 # Remix Blues Stack
@@ -61,51 +63,6 @@ Not a fan of bits of the stack? Fork it, change it, and use `npx create-remix --
 Click this button to create a [Gitpod](https://gitpod.io) workspace with the project set up, Postgres started, and Fly pre-installed
 
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/remix-run/blues-stack/tree/main)
-
-## Development
-
-- Start the Postgres Database in [Docker](https://www.docker.com/get-started):
-
-  ```sh
-  npm run docker
-  ```
-
-  > **Note:** The npm script will complete while Docker sets up the container in the background. Ensure that Docker has finished and your container is running before proceeding.
-
-- Initial setup:
-
-  ```sh
-  npm run setup
-  ```
-
-- Run the first build:
-
-  ```sh
-  npm run build
-  ```
-
-- Start dev server:
-
-  ```sh
-  npm run dev
-  ```
-
-This starts your app in development mode, rebuilding assets on file changes.
-
-The database seed script creates a new user with some data you can use to get started:
-
-- Email: `rachel@remix.run`
-- Password: `racheliscool`
-
-If you'd prefer not to use Docker, you can also use Fly's Wireguard VPN to connect to a development database (or even your production database). You can find the instructions to set up Wireguard [here](https://fly.io/docs/reference/private-networking/#install-your-wireguard-app), and the instructions for creating a development database [here](https://fly.io/docs/reference/postgres/).
-
-### Relevant code:
-
-This is a pretty simple note-taking app, but it's a good example of how you can build a full stack app with Prisma and Remix. The main functionality is creating users, logging in and out, and creating and deleting notes.
-
-- creating users, and logging in and out [./app/models/user.server.ts](./app/models/user.server.ts)
-- user sessions, and verifying them [./app/session.server.ts](./app/session.server.ts)
-- creating, and deleting notes [./app/models/note.server.ts](./app/models/note.server.ts)
 
 ## Deployment
 
