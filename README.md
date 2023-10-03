@@ -21,6 +21,7 @@ Steps to start the dashboard:
 - Clone this repository
 - Start the database service: `docker-compose up -d`
 - Install package deps: `npm i`
+- Create a `.env` file by using the `.env.example` provided (you may need to change Postgresql port, check the port mapping in `docker-compose.yml`)
 - Generate prisma client: `npx prisma generate`
 - Run database migrations: `npx prisma migrate dev`
 - Start the app: `npx run dev`
@@ -123,10 +124,10 @@ Prior to your first deployment, you'll need to do a few things:
 - Create a database for both your staging and production environments. Run the following:
 
   ```sh
-  fly postgres create --name app-0d97-db
+  fly postgres create --name app-0d97-db --image-ref flyio/postgres-flex-timescaledb:15
   fly postgres attach --app app-0d97 app-0d97-db
 
-  fly postgres create --name app-0d97-staging-db
+  fly postgres create --name app-0d97-staging-db --image-ref flyio/postgres-flex-timescaledb:15
   fly postgres attach --app app-0d97-staging app-0d97-staging-db
   ```
 
