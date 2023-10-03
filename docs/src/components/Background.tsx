@@ -1,8 +1,6 @@
-import clsx from 'clsx'
-
 export function Background(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
-    <svg width="100%" height="100%">
+    <svg width="100%" height="100%" {...props}>
       <defs>
         <pattern
           id="circle"
@@ -11,7 +9,7 @@ export function Background(props: React.ComponentPropsWithoutRef<'svg'>) {
           width="1200"
           height="3000"
           patternUnits="userSpaceOnUse"
-          className={clsx('text-cyan-950', className)}
+          className={'text-cyan-950'}
         >
           <circle fill="currentColor" cx="500" cy="500" r="600"></circle>
         </pattern>
