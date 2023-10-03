@@ -76,9 +76,9 @@ export default function Index() {
                         </span>
                         <span className="text-sm text-cyan-100">
                           Power-up your station and connect to the
-                          Air_Quality_Station Wi-Fi network. A new browser
-                          window will open, ", "follow the instructios to
-                          register your station in the browser.
+                          Air-Quality-Dashboard Wi-Fi network. A new browser
+                          window will open, follow the instructions on the
+                          screen.
                         </span>
                       </span>
                     </div>
