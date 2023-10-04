@@ -38,7 +38,7 @@ export function AirQuality() {
       <section
         id="free-chapters"
         aria-label="Free preview"
-        className="bg-cornflower-950 scroll-mt-2 rounded-r-full sm:scroll-mt-2"
+        className="bg-cornflower-950 scroll-mt-2 md:rounded-r-full sm:scroll-mt-2"
       >
         <div className="overflow-hidden lg:relative">
           <Container
@@ -103,7 +103,7 @@ export function AirQuality() {
       <section
         id="free-chapters"
         aria-label="Free preview"
-        className="bg-cornflower-200 mt-2 scroll-mt-2 rounded-r-full sm:scroll-mt-2"
+        className="bg-cornflower-200 md:mt-2 scroll-mt-2 md:rounded-r-full sm:scroll-mt-2"
       >
         <div className="overflow-hidden lg:relative">
           <Container
@@ -163,7 +163,7 @@ export function AirQuality() {
       <section
         id="free-chapters"
         aria-label="Free preview"
-        className="bg-cornflower-950 mt-2 scroll-mt-2 rounded-r-full sm:scroll-mt-2"
+        className="bg-cornflower-950 md:mt-2 scroll-mt-2 md:rounded-r-full sm:scroll-mt-2"
       >
         <div className="overflow-hidden lg:relative">
           <Container

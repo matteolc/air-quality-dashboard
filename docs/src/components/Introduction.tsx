@@ -113,7 +113,7 @@ export function Introduction() {
       <section
         id="free-chapters"
         aria-label="Free preview"
-        className="bg-cornflower-200 mt-8 scroll-mt-2 rounded-r-full text-cyan-950 sm:scroll-mt-2"
+        className="bg-cornflower-200 mt-8 scroll-mt-2 md:rounded-r-full text-cyan-950 sm:scroll-mt-2"
       >
         <div className="overflow-hidden lg:relative">
           <Container
