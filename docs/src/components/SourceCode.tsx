@@ -6,7 +6,7 @@ export function SourceCode() {
     <section
       id="free-chapters"
       aria-label="Free preview"
-      className="scroll-mt-14 overflow-hidden rounded-r-full bg-cyan-950 sm:scroll-mt-32"
+      className="scroll-mt-14 overflow-hidden md:rounded-r-full bg-cyan-950 sm:scroll-mt-32"
     >
       <div className="overflow-hidden lg:relative">
         <Container
