@@ -34,6 +34,11 @@ script_checks = [ ]
   port = 80
   force_https = true
 
+  [[services.ports.http_options.response.headers]]
+  Access-Control-Allow-Origin = "*"
+  Access-Control-Allow-Methods = "*"
+  Access-Control-Allow-Headers = "*"
+
   [[services.ports]]
   handlers = [ "tls", "http" ]
   port = 443

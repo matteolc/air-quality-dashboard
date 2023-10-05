@@ -87,12 +87,7 @@ async function run() {
 
   app.use(
     cors({
-      origin: ["*:*"],
-      allowedHeaders: [
-        "Access-Control-Allow-Origin",
-        "Access-Control-Allow-Methods",
-        "Access-Control-Allow-Headers",
-      ],
+      origin: "*",
     } as CorsOptions),
   );
 
@@ -134,12 +129,7 @@ async function run() {
     SocketData
   >(httpServer, {
     cors: {
-      origin: ["*:*"],
-      allowedHeaders: [
-        "Access-Control-Allow-Origin",
-        "Access-Control-Allow-Methods",
-        "Access-Control-Allow-Headers",
-      ],
+      origin: "http://localhost:8080",
     },
   });
 
@@ -183,7 +173,8 @@ async function run() {
     async function handleServerUpdate() {
       // 1. re-import the server build
       build = await reimportServer();
-      // 2. tell Remix that this app server is now up-to-date and ready
+      // 2. tell Remiximport handleRequest from './app/entry.server';
+      // that this app server is now up-to-date and ready
       broadcastDevReady(build);
     }
     chokidar
