@@ -129,7 +129,7 @@ async function run() {
     SocketData
   >(httpServer, {
     cors: {
-      origin: "http://localhost:8080",
+      origin: "*",
     },
   });
 
