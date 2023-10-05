@@ -23,9 +23,16 @@ import {
   handleSocketEvent,
 } from "socket";
 
+import cors from "cors";
+
 sourceMapSupport.install();
 installGlobals();
 run();
+
+const corsOptions = {
+  origin: "*",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 
 async function run() {
   const BUILD_PATH = path.resolve("build/index.js");
@@ -83,19 +90,7 @@ async function run() {
     return res.sendStatus(409);
   });
 
-  // Create an HTTP server from the Express app
-  const httpServer = createServer(app);
-
-  // Attach the socket.io server to the HTTP server
-  const io = new Server<
-    ClientToServerEvents,
-    ServerToClientEvents,
-    InterServerEvents,
-    SocketData
-  >(httpServer);
-
-  // Use `io` to listen the `connection` event and get a socket from a client
-  io.on("connection", (socket) => handleSocketEvent(socket, io));
+  app.use(cors(corsOptions));
 
   app.use(compression());
 
@@ -123,6 +118,20 @@ async function run() {
           mode: process.env.NODE_ENV,
         }),
   );
+
+  // Create an HTTP server from the Express app
+  const httpServer = createServer(app);
+
+  // Attach the socket.io server to the HTTP server
+  const io = new Server<
+    ClientToServerEvents,
+    ServerToClientEvents,
+    InterServerEvents,
+    SocketData
+  >(httpServer);
+
+  // Use `io` to listen the `connection` event and get a socket from a client
+  io.on("connection", (socket) => handleSocketEvent(socket, io));
 
   const port = process.env.PORT || 3000;
   httpServer.listen(port, () => {
