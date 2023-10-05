@@ -23,16 +23,11 @@ import {
   handleSocketEvent,
 } from "socket";
 
-import cors from "cors";
+import cors, { type CorsOptions } from "cors";
 
 sourceMapSupport.install();
 installGlobals();
 run();
-
-const corsOptions = {
-  origin: "*",
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
 
 async function run() {
   const BUILD_PATH = path.resolve("build/index.js");
@@ -90,7 +85,12 @@ async function run() {
     return res.sendStatus(409);
   });
 
-  app.use(cors(corsOptions));
+  app.use(
+    cors({
+      origin: ["http://localhost:3000", "http://localhost:8080"],
+      allowedHeaders: ["Access-Control-Allow-Origin"],
+    } as CorsOptions),
+  );
 
   app.use(compression());
 
