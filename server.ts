@@ -87,7 +87,12 @@ async function run() {
 
   app.use(
     cors({
-      origin: ["*"],
+      origin: ["*:*"],
+      allowedHeaders: [
+        "Access-Control-Allow-Origin",
+        "Access-Control-Allow-Methods",
+        "Access-Control-Allow-Headers",
+      ],
     } as CorsOptions),
   );
 
@@ -129,7 +134,12 @@ async function run() {
     SocketData
   >(httpServer, {
     cors: {
-      origin: ["*"],
+      origin: ["*:*"],
+      allowedHeaders: [
+        "Access-Control-Allow-Origin",
+        "Access-Control-Allow-Methods",
+        "Access-Control-Allow-Headers",
+      ],
     },
   });
 
