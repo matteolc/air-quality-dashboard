@@ -87,8 +87,7 @@ async function run() {
 
   app.use(
     cors({
-      origin: ["http://localhost:3000", "http://localhost:8080"],
-      allowedHeaders: ["Access-Control-Allow-Origin"],
+      origin: ["*"],
     } as CorsOptions),
   );
 
@@ -128,7 +127,11 @@ async function run() {
     ServerToClientEvents,
     InterServerEvents,
     SocketData
-  >(httpServer);
+  >(httpServer, {
+    cors: {
+      origin: ["*"],
+    },
+  });
 
   // Use `io` to listen the `connection` event and get a socket from a client
   io.on("connection", (socket) => handleSocketEvent(socket, io));
