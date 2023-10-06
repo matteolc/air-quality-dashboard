@@ -128,6 +128,7 @@ async function run() {
     InterServerEvents,
     SocketData
   >(httpServer, {
+    transports: ["websocket", "polling"],
     cors: {
       origin: "*",
     },

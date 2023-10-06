@@ -44,7 +44,6 @@ void blink_led(void);
 void loadState(void);
 void updateState(void);
 
-
 // Access Point credentials
 String scads_ssid = "";
 String scads_pass = "airqualitydash";
